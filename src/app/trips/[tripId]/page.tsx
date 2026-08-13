@@ -27,7 +27,7 @@ export default async function TripOverviewPage({
 
   const trip = await prisma.trip.findUnique({
     where: { id: tripId },
-    include: { _count: { select: { itineraryItems: true } } },
+    include: { _count: { select: { itineraryItems: true, places: true } } },
   });
 
   if (!trip) {
@@ -60,7 +60,7 @@ export default async function TripOverviewPage({
           )}
         </div>
 
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-lg border border-black/[.08] bg-white p-4 dark:border-white/[.145] dark:bg-zinc-950">
             <p className="text-sm text-zinc-600 dark:text-zinc-400">Budget</p>
             <p className="text-lg font-medium text-black dark:text-zinc-50">
@@ -75,11 +75,22 @@ export default async function TripOverviewPage({
               {trip._count.itineraryItems}
             </p>
           </div>
+          <div className="rounded-lg border border-black/[.08] bg-white p-4 dark:border-white/[.145] dark:bg-zinc-950">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">Places to visit</p>
+            <p className="text-lg font-medium text-black dark:text-zinc-50">
+              {trip._count.places}
+            </p>
+          </div>
         </div>
 
-        <Link href={`/trips/${trip.id}/itinerary`} className={primaryButtonClass}>
-          View itinerary
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link href={`/trips/${trip.id}/itinerary`} className={primaryButtonClass}>
+            View itinerary
+          </Link>
+          <Link href={`/trips/${trip.id}/places`} className={secondaryButtonClass}>
+            View places & map
+          </Link>
+        </div>
 
         {membership.role === "OWNER" && (
           <div className="mt-12 border-t border-black/[.08] pt-6 dark:border-white/[.145]">

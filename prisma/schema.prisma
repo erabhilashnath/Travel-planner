@@ -65,6 +65,7 @@ model User {
   expensesPaid Expense[]      @relation("ExpensePaidBy")
   itineraryItemsCreated ItineraryItem[] @relation("ItineraryItemCreatedBy")
   savedOptions SavedOption[]  @relation("SavedOptionSavedBy")
+  placesCreated Place[]       @relation("PlaceCreatedBy")
 }
 
 model Trip {
@@ -84,6 +85,7 @@ model Trip {
   itineraryItems ItineraryItem[]
   expenses       Expense[]
   savedOptions   SavedOption[]
+  places         Place[]
 }
 
 enum TripMemberRole {
@@ -196,4 +198,20 @@ model SavedOption {
   trip           Trip           @relation(fields: [tripId], references: [id], onDelete: Cascade)
   savedBy        User           @relation("SavedOptionSavedBy", fields: [savedById], references: [id])
   itineraryItems ItineraryItem[]
+}
+
+model Place {
+  id                String   @id @default(cuid())
+  tripId            String
+  name              String
+  formattedAddress  String?
+  lat               Float
+  lng               Float
+  notes             String?
+  sortOrder         Int      @default(0)
+  createdById       String
+  createdAt         DateTime @default(now())
+
+  trip      Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  createdBy User @relation("PlaceCreatedBy", fields: [createdById], references: [id])
 }

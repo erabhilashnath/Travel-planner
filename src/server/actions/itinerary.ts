@@ -3,9 +3,8 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-import { auth } from "@/server/auth";
 import { prisma } from "@/server/db";
-import { getTripMembership, canEdit } from "@/server/access";
+import { requireEditableMembership } from "@/server/access";
 import { itineraryItemFormSchema } from "@/lib/validation/itinerary";
 
 function combineDateAndTime(date: Date, time: string | undefined) {
@@ -15,20 +14,6 @@ function combineDateAndTime(date: Date, time: string | undefined) {
   const combined = new Date(date);
   combined.setUTCHours(hours, minutes, 0, 0);
   return combined;
-}
-
-async function requireEditableMembership(tripId: string) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect("/signin");
-  }
-
-  const membership = await getTripMembership(tripId, session.user.id);
-  if (!membership || !canEdit(membership.role)) {
-    throw new Error("You don't have permission to edit this trip's itinerary");
-  }
-
-  return session.user.id;
 }
 
 function parseItineraryForm(formData: FormData) {
