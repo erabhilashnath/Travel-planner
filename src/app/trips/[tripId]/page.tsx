@@ -44,9 +44,9 @@ export default async function TripOverviewPage({
       </header>
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
-        <div className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-semibold break-words text-black dark:text-zinc-50">
               {trip.name}
             </h1>
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -57,7 +57,7 @@ export default async function TripOverviewPage({
             </p>
           </div>
           {editable && (
-            <div className="flex gap-2">
+            <div className="flex shrink-0 gap-2">
               <Link href={`/trips/${trip.id}/edit`} className={secondaryButtonClass}>
                 Edit
               </Link>
@@ -65,7 +65,7 @@ export default async function TripOverviewPage({
           )}
         </div>
 
-        <div className="mb-8 grid grid-cols-2 gap-4">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-lg border border-black/[.08] bg-white p-4 dark:border-white/[.145] dark:bg-zinc-950">
             <p className="text-sm text-zinc-600 dark:text-zinc-400">Budget</p>
             <p className="text-lg font-medium text-black dark:text-zinc-50">

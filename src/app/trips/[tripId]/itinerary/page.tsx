@@ -100,10 +100,10 @@ export default async function ItineraryPage({
                   {dayItems.map((item) => (
                     <li
                       key={item.id}
-                      className="flex items-start justify-between rounded-lg border border-black/[.08] bg-white p-4 dark:border-white/[.145] dark:bg-zinc-950"
+                      className="flex flex-col gap-3 rounded-lg border border-black/[.08] bg-white p-4 dark:border-white/[.145] dark:bg-zinc-950 sm:flex-row sm:items-start sm:justify-between"
                     >
-                      <div>
-                        <div className="flex items-center gap-2">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
                           <span className="rounded-full bg-black/[.06] px-2 py-0.5 text-xs font-medium text-black dark:bg-white/[.08] dark:text-zinc-50">
                             {categoryLabels[item.category]}
                           </span>
@@ -114,16 +114,16 @@ export default async function ItineraryPage({
                             </span>
                           )}
                         </div>
-                        <p className="mt-1 font-medium text-black dark:text-zinc-50">
+                        <p className="mt-1 break-words font-medium text-black dark:text-zinc-50">
                           {item.title}
                         </p>
                         {item.location && (
-                          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                          <p className="break-words text-sm text-zinc-600 dark:text-zinc-400">
                             {item.location}
                           </p>
                         )}
                         {item.notes && (
-                          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                          <p className="mt-1 break-words text-sm text-zinc-600 dark:text-zinc-400">
                             {item.notes}
                           </p>
                         )}
@@ -165,7 +165,7 @@ export default async function ItineraryPage({
               Add itinerary item
             </h2>
             <form action={createItemForTrip} className="flex flex-col gap-4">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
                   <label htmlFor="date" className={labelClass}>
                     Date
@@ -201,7 +201,7 @@ export default async function ItineraryPage({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="category" className={labelClass}>
                     Category

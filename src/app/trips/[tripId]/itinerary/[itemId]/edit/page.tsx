@@ -69,7 +69,7 @@ export default async function EditItineraryItemPage({
         </h1>
 
         <form action={updateItemWithIds} className="flex flex-col gap-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
               <label htmlFor="date" className={labelClass}>
                 Date
@@ -124,7 +124,7 @@ export default async function EditItineraryItemPage({
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="category" className={labelClass}>
                 Category

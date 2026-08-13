@@ -19,7 +19,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-1 flex-col bg-sand dark:bg-black">
-      <header className="flex items-center justify-between border-b border-black/[.08] px-6 py-4 dark:border-white/[.145]">
+      <header className="flex flex-col gap-3 border-b border-black/[.08] px-6 py-4 dark:border-white/[.145] sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <LogoMark className="h-7 w-7" />
           <h1 className="font-display text-lg font-semibold text-black dark:text-zinc-50">
@@ -27,7 +27,7 @@ export default async function DashboardPage() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-zinc-600 dark:text-zinc-400">
+          <span className="min-w-0 truncate text-sm text-zinc-600 dark:text-zinc-400">
             {session.user.email}
           </span>
           <form

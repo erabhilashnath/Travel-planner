@@ -82,7 +82,7 @@ export default async function EditTripPage({
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="startDate" className={labelClass}>
                 Start date
@@ -111,7 +111,7 @@ export default async function EditTripPage({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="homeCurrency" className={labelClass}>
                 Home currency
