@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { createTrip } from "@/server/actions/trips";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
 import { currencyCodes, currencyLabels } from "@/lib/currencies";
+import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 export default async function NewTripPage() {
   const session = await auth();
@@ -13,17 +14,13 @@ export default async function NewTripPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <header className="border-b border-black/[.08] px-6 py-4 dark:border-white/[.145]">
-        <Link href="/" className="text-sm text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50">
-          ← Back to trips
-        </Link>
-      </header>
+    <PageShell>
+      <PageHeader left={<BackLink href="/">Back to trips</BackLink>} />
 
-      <main className="mx-auto w-full max-w-lg flex-1 px-6 py-10">
-        <h1 className="mb-6 text-lg font-semibold text-black dark:text-zinc-50">
-          New trip
-        </h1>
+      <PageMain className="max-w-lg">
+        <div className="mb-6">
+          <PageTitle>New trip</PageTitle>
+        </div>
 
         <form action={createTrip} className="flex flex-col gap-4">
           <div>
@@ -127,7 +124,7 @@ export default async function NewTripPage() {
             </Link>
           </div>
         </form>
-      </main>
-    </div>
+      </PageMain>
+    </PageShell>
   );
 }

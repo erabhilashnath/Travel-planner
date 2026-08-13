@@ -1,6 +1,7 @@
 import { signIn } from "@/server/auth";
 import { LogoMark } from "@/components/logo";
 import { HeroScene } from "@/components/hero-scene";
+import { PageShell } from "@/components/page-shell";
 
 const features = [
   { icon: "🗺️", label: "Plan day-by-day itineraries" },
@@ -10,7 +11,7 @@ const features = [
 
 export default function SignInPage() {
   return (
-    <div className="flex flex-1 flex-col bg-sand dark:bg-black lg:flex-row">
+    <PageShell className="lg:flex-row">
       <div className="relative hidden overflow-hidden lg:flex lg:w-1/2">
         <HeroScene />
         <div className="absolute inset-0 flex flex-col justify-end p-12">
@@ -73,6 +74,6 @@ export default function SignInPage() {
           </p>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 }

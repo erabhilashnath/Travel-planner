@@ -4,6 +4,7 @@ import Link from "next/link";
 import { auth, signOut } from "@/server/auth";
 import { prisma } from "@/server/db";
 import { LogoMark } from "@/components/logo";
+import { PageShell, PageHeader, PageMain } from "@/components/page-shell";
 import { formatDate } from "@/lib/utils";
 
 export default async function DashboardPage() {
@@ -18,35 +19,39 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="flex flex-1 flex-col bg-sand dark:bg-black">
-      <header className="flex flex-col gap-3 border-b border-black/[.08] px-6 py-4 dark:border-white/[.145] sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <LogoMark className="h-7 w-7" />
-          <h1 className="font-display text-lg font-semibold text-black dark:text-zinc-50">
-            Travel Planner
-          </h1>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="min-w-0 truncate text-sm text-zinc-600 dark:text-zinc-400">
-            {session.user.email}
-          </span>
-          <form
-            action={async () => {
-              "use server";
-              await signOut({ redirectTo: "/signin" });
-            }}
-          >
-            <button
-              type="submit"
-              className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
+    <PageShell>
+      <PageHeader
+        left={
+          <>
+            <LogoMark className="h-7 w-7" />
+            <h1 className="font-display text-lg font-semibold text-black dark:text-zinc-50">
+              Travel Planner
+            </h1>
+          </>
+        }
+        right={
+          <>
+            <span className="min-w-0 truncate text-sm text-zinc-600 dark:text-zinc-400">
+              {session.user.email}
+            </span>
+            <form
+              action={async () => {
+                "use server";
+                await signOut({ redirectTo: "/signin" });
+              }}
             >
-              Sign out
-            </button>
-          </form>
-        </div>
-      </header>
+              <button
+                type="submit"
+                className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                Sign out
+              </button>
+            </form>
+          </>
+        }
+      />
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+      <PageMain className="max-w-3xl">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="font-display text-xl font-medium text-black dark:text-zinc-50">
             Your trips
@@ -95,7 +100,7 @@ export default async function DashboardPage() {
             ))}
           </ul>
         )}
-      </main>
-    </div>
+      </PageMain>
+    </PageShell>
   );
 }

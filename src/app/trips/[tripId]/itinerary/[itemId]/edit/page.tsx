@@ -7,6 +7,7 @@ import { getTripMembership, canEdit } from "@/server/access";
 import { updateItineraryItem } from "@/server/actions/itinerary";
 import { itineraryCategories } from "@/lib/validation/itinerary";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
+import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 const categoryLabels: Record<(typeof itineraryCategories)[number], string> = {
   FLIGHT: "Flight",
@@ -53,20 +54,13 @@ export default async function EditItineraryItemPage({
   const updateItemWithIds = updateItineraryItem.bind(null, tripId, itemId);
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <header className="border-b border-black/[.08] px-6 py-4 dark:border-white/[.145]">
-        <Link
-          href={`/trips/${tripId}/itinerary`}
-          className="text-sm text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
-        >
-          ← Back to itinerary
-        </Link>
-      </header>
+    <PageShell>
+      <PageHeader left={<BackLink href={`/trips/${tripId}/itinerary`}>Back to itinerary</BackLink>} />
 
-      <main className="mx-auto w-full max-w-lg flex-1 px-6 py-10">
-        <h1 className="mb-6 text-lg font-semibold text-black dark:text-zinc-50">
-          Edit itinerary item
-        </h1>
+      <PageMain className="max-w-lg">
+        <div className="mb-6">
+          <PageTitle>Edit itinerary item</PageTitle>
+        </div>
 
         <form action={updateItemWithIds} className="flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -178,7 +172,7 @@ export default async function EditItineraryItemPage({
             </Link>
           </div>
         </form>
-      </main>
-    </div>
+      </PageMain>
+    </PageShell>
   );
 }

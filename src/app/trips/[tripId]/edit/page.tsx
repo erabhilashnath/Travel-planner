@@ -7,6 +7,7 @@ import { getTripMembership, canEdit } from "@/server/access";
 import { updateTrip } from "@/server/actions/trips";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
 import { currencyCodes, currencyLabels } from "@/lib/currencies";
+import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 function toDateInputValue(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -37,20 +38,13 @@ export default async function EditTripPage({
   const updateTripWithId = updateTrip.bind(null, tripId);
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <header className="border-b border-black/[.08] px-6 py-4 dark:border-white/[.145]">
-        <Link
-          href={`/trips/${tripId}`}
-          className="text-sm text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
-        >
-          ← Back to trip
-        </Link>
-      </header>
+    <PageShell>
+      <PageHeader left={<BackLink href={`/trips/${tripId}`}>Back to trip</BackLink>} />
 
-      <main className="mx-auto w-full max-w-lg flex-1 px-6 py-10">
-        <h1 className="mb-6 text-lg font-semibold text-black dark:text-zinc-50">
-          Edit trip
-        </h1>
+      <PageMain className="max-w-lg">
+        <div className="mb-6">
+          <PageTitle>Edit trip</PageTitle>
+        </div>
 
         <form action={updateTripWithId} className="flex flex-col gap-4">
           <div>
@@ -156,7 +150,7 @@ export default async function EditTripPage({
             </Link>
           </div>
         </form>
-      </main>
-    </div>
+      </PageMain>
+    </PageShell>
   );
 }
