@@ -1,0 +1,199 @@
+// Prisma schema for Travel-planner
+// See plan: /home/abhi890/.claude/plans/lets-plan-something-adaptive-dream.md
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- Auth.js (NextAuth) required tables for the Prisma adapter ---
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// --- Core app model ---
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+
+  accounts     Account[]
+  sessions     Session[]
+  createdTrips Trip[]         @relation("TripCreatedBy")
+  memberships  TripMember[]
+  expensesPaid Expense[]      @relation("ExpensePaidBy")
+  itineraryItemsCreated ItineraryItem[] @relation("ItineraryItemCreatedBy")
+  savedOptions SavedOption[]  @relation("SavedOptionSavedBy")
+}
+
+model Trip {
+  id            String   @id @default(cuid())
+  name          String
+  destination   String
+  startDate     DateTime
+  endDate       DateTime
+  homeCurrency  String   @default("USD")
+  budgetAmount  Decimal?
+  createdById   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  createdBy      User            @relation("TripCreatedBy", fields: [createdById], references: [id])
+  members        TripMember[]
+  itineraryItems ItineraryItem[]
+  expenses       Expense[]
+  savedOptions   SavedOption[]
+}
+
+enum TripMemberRole {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+enum TripMemberStatus {
+  PENDING
+  ACCEPTED
+}
+
+model TripMember {
+  id           String            @id @default(cuid())
+  tripId       String
+  userId       String?
+  invitedEmail String?
+  role         TripMemberRole    @default(EDITOR)
+  status       TripMemberStatus  @default(PENDING)
+  inviteToken  String?           @unique
+  invitedAt    DateTime          @default(now())
+  joinedAt     DateTime?
+
+  trip Trip  @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id])
+
+  @@unique([tripId, userId])
+}
+
+enum ItineraryCategory {
+  FLIGHT
+  LODGING
+  ACTIVITY
+  TRANSPORT
+  FOOD
+  OTHER
+}
+
+model ItineraryItem {
+  id            String            @id @default(cuid())
+  tripId        String
+  date          DateTime
+  startTime     DateTime?
+  endTime       DateTime?
+  title         String
+  category      ItineraryCategory @default(OTHER)
+  location      String?
+  notes         String?
+  sortOrder     Int               @default(0)
+  createdById   String
+  savedOptionId String?           @unique
+
+  trip        Trip         @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  createdBy   User         @relation("ItineraryItemCreatedBy", fields: [createdById], references: [id])
+  savedOption SavedOption? @relation(fields: [savedOptionId], references: [id])
+}
+
+enum ExpenseCategory {
+  FLIGHTS
+  LODGING
+  FOOD
+  TRANSPORT
+  ACTIVITIES
+  SHOPPING
+  OTHER
+}
+
+model Expense {
+  id                   String          @id @default(cuid())
+  tripId               String
+  paidById             String
+  amount               Decimal
+  currency             String
+  amountInHomeCurrency Decimal
+  exchangeRate         Decimal
+  category             ExpenseCategory @default(OTHER)
+  description          String
+  date                 DateTime
+  createdAt            DateTime        @default(now())
+
+  trip    Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  paidBy  User @relation("ExpensePaidBy", fields: [paidById], references: [id])
+}
+
+enum SavedOptionType {
+  FLIGHT
+  HOTEL
+}
+
+enum SavedOptionStatus {
+  SAVED
+  DISMISSED
+}
+
+model SavedOption {
+  id         String            @id @default(cuid())
+  tripId     String
+  type       SavedOptionType
+  provider   String
+  title      String
+  price      Decimal
+  currency   String
+  deepLink   String
+  rawData    Json
+  status     SavedOptionStatus @default(SAVED)
+  savedById  String
+  createdAt  DateTime          @default(now())
+
+  trip           Trip           @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  savedBy        User           @relation("SavedOptionSavedBy", fields: [savedById], references: [id])
+  itineraryItems ItineraryItem[]
+}
