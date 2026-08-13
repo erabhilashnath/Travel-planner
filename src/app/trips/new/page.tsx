@@ -4,6 +4,7 @@ import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
 import { createTrip } from "@/server/actions/trips";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
+import { currencyCodes, currencyLabels } from "@/lib/currencies";
 
 export default async function NewTripPage() {
   const session = await auth();
@@ -87,17 +88,19 @@ export default async function NewTripPage() {
               <label htmlFor="homeCurrency" className={labelClass}>
                 Home currency
               </label>
-              <input
+              <select
                 id="homeCurrency"
                 name="homeCurrency"
-                type="text"
                 required
-                maxLength={3}
-                minLength={3}
                 defaultValue="USD"
-                placeholder="USD"
-                className={`${inputClass} uppercase`}
-              />
+                className={inputClass}
+              >
+                {currencyCodes.map((code) => (
+                  <option key={code} value={code}>
+                    {code} — {currencyLabels[code]}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label htmlFor="budgetAmount" className={labelClass}>

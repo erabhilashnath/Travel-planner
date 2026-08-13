@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { currencyCodes } from "@/lib/currencies";
+
 const optionalPositiveNumber = z
   .string()
   .optional()
@@ -14,11 +16,7 @@ export const tripFormSchema = z
     destination: z.string().trim().min(1, "Destination is required").max(100),
     startDate: z.coerce.date({ error: "Start date is required" }),
     endDate: z.coerce.date({ error: "End date is required" }),
-    homeCurrency: z
-      .string()
-      .trim()
-      .length(3, "Use a 3-letter currency code, e.g. USD")
-      .toUpperCase(),
+    homeCurrency: z.enum(currencyCodes, { error: "Select a currency" }),
     budgetAmount: optionalPositiveNumber,
   })
   .refine((data) => data.endDate >= data.startDate, {
