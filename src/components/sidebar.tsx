@@ -41,7 +41,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-60 shrink-0 transform overflow-y-auto border-r border-white/10 bg-[#1e120a] transition-transform duration-200 sm:static sm:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-60 shrink-0 transform overflow-y-auto border-r border-white/10 bg-[#2e1c10] transition-transform duration-200 sm:static sm:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
