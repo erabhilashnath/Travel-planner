@@ -1,6 +1,6 @@
 export function AppBackground() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-gradient-to-b from-[#2b1509] via-[#3d1c0f] to-ocean-2">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-gradient-to-b from-[#3a1d0e] via-[#4a2814] to-[#154569]">
       <div className="absolute inset-0">
         {[...Array(24)].map((_, i) => (
           <span

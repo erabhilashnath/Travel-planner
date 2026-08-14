@@ -80,14 +80,14 @@ export default async function ItineraryPage({
         </div>
 
         {dayGroups.length === 0 ? (
-          <p className="mb-8 text-sm text-zinc-600 dark:text-zinc-400">
+          <p className="mb-8 text-sm text-zinc-300">
             No itinerary items yet. Add your first one below.
           </p>
         ) : (
           <div className="mb-10 flex flex-col gap-8">
             {dayGroups.map(([dayKey, dayItems]) => (
               <div key={dayKey}>
-                <h2 className="mb-3 text-sm font-semibold text-black dark:text-zinc-50">
+                <h2 className="mb-3 text-sm font-semibold text-zinc-50">
                   {formatDayHeading(dayItems[0].date)}
                 </h2>
                 <ul className="flex flex-col gap-2">
@@ -155,7 +155,7 @@ export default async function ItineraryPage({
 
         {editable && (
           <div className="border-t border-black/[.08] pt-6 dark:border-white/[.145]">
-            <h2 className="mb-4 text-sm font-medium text-black dark:text-zinc-50">
+            <h2 className="mb-4 text-sm font-medium text-zinc-50">
               Add itinerary item
             </h2>
             <form action={createItemForTrip} className="flex flex-col gap-4">

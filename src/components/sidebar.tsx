@@ -41,17 +41,17 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-60 shrink-0 transform overflow-y-auto border-r border-black/[.08] bg-white transition-transform duration-200 dark:border-white/[.145] dark:bg-zinc-950 sm:static sm:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-60 shrink-0 transform overflow-y-auto border-r border-white/10 bg-[#1e120a] transition-transform duration-200 sm:static sm:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between px-4 pb-1 pt-4 sm:hidden">
-          <span className="text-sm font-semibold text-black dark:text-zinc-50">Menu</span>
+          <span className="text-sm font-semibold text-zinc-50">Menu</span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-600 hover:bg-black/[.04] dark:text-zinc-400 dark:hover:bg-white/[.06]"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-300 hover:bg-white/10"
           >
             <CloseIcon className="h-4 w-4" />
           </button>
@@ -78,8 +78,8 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
                   onClick={onClose}
                   className={`${baseClass} ${
                     isActive
-                      ? "bg-gradient-to-r from-sunset-1/40 to-sunset-3/20 text-black dark:text-zinc-50"
-                      : "text-zinc-600 hover:bg-black/[.04] dark:text-zinc-400 dark:hover:bg-white/[.06]"
+                      ? "bg-gradient-to-r from-sunset-1/30 to-sunset-3/20 text-white"
+                      : "text-zinc-300 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {content}
@@ -93,7 +93,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
                 type="button"
                 disabled
                 title="Coming soon"
-                className={`${baseClass} cursor-default text-zinc-400 dark:text-zinc-600`}
+                className={`${baseClass} cursor-default text-zinc-500`}
               >
                 {content}
               </button>

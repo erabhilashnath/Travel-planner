@@ -61,7 +61,7 @@ export default async function PlacesPage({
         </div>
 
         {places.length === 0 ? (
-          <p className="mb-8 text-sm text-zinc-600 dark:text-zinc-400">
+          <p className="mb-8 text-sm text-zinc-300">
             No places yet. Search for one below to add it.
           </p>
         ) : (
@@ -139,7 +139,7 @@ export default async function PlacesPage({
 
         {editable && (
           <div className="border-t border-black/[.08] pt-6 dark:border-white/[.145]">
-            <h2 className="mb-4 text-sm font-medium text-black dark:text-zinc-50">
+            <h2 className="mb-4 text-sm font-medium text-zinc-50">
               Add a place
             </h2>
             <PlaceAutocompleteForm action={createPlaceForTrip} />

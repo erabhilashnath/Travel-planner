@@ -44,10 +44,10 @@ export default async function TripOverviewPage({
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <PageTitle className="break-words">{trip.name}</PageTitle>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="text-sm text-zinc-300">
               {trip.destination}
             </p>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="mt-1 text-sm text-zinc-300">
               {formatDate(trip.startDate)} – {formatDate(trip.endDate)}
             </p>
           </div>
@@ -94,7 +94,7 @@ export default async function TripOverviewPage({
 
         {membership.role === "OWNER" && (
           <div className="mt-12 border-t border-black/[.08] pt-6 dark:border-white/[.145]">
-            <h2 className="mb-2 text-sm font-medium text-black dark:text-zinc-50">
+            <h2 className="mb-2 text-sm font-medium text-zinc-50">
               Danger zone
             </h2>
             <form

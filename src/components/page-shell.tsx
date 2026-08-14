@@ -23,7 +23,7 @@ export function PageHeader({
   right?: ReactNode;
 }) {
   return (
-    <header className="flex flex-col gap-3 border-b border-black/[.08] px-6 py-4 dark:border-white/[.145] sm:flex-row sm:items-center sm:justify-between">
+    <header className="flex flex-col gap-3 border-b border-white/10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
       {left ? <div className="flex items-center gap-2">{left}</div> : null}
       {right ? <div className="flex items-center gap-4">{right}</div> : null}
     </header>
@@ -34,7 +34,7 @@ export function BackLink({ href, children }: { href: string; children: ReactNode
   return (
     <Link
       href={href}
-      className="text-sm text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
+      className="text-sm text-zinc-300 hover:text-white"
     >
       ← {children}
     </Link>
@@ -64,7 +64,7 @@ export function PageTitle({
 }) {
   return (
     <h1
-      className={`font-display text-2xl font-semibold text-black dark:text-zinc-50 ${className}`}
+      className={`font-display text-2xl font-semibold text-zinc-50 ${className}`}
     >
       {children}
     </h1>

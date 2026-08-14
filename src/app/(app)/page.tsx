@@ -20,7 +20,7 @@ export default async function DashboardPage() {
   return (
     <PageMain className="max-w-3xl">
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="font-display text-xl font-medium text-black dark:text-zinc-50">
+        <h2 className="font-display text-xl font-medium text-zinc-50">
           Your trips
         </h2>
         <Link

@@ -83,7 +83,7 @@ export function PlaceAutocompleteForm({
           className={inputClass}
         />
         {loading && (
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">Searching…</p>
+          <p className="mt-1 text-xs text-zinc-400">Searching…</p>
         )}
         {showResults && (
           <ul className="absolute z-10 mt-1 w-full overflow-hidden rounded-md border border-black/[.08] bg-white shadow-lg dark:border-white/[.145] dark:bg-zinc-900">
@@ -101,7 +101,7 @@ export function PlaceAutocompleteForm({
           </ul>
         )}
         {!selected && query.trim().length >= 2 && !loading && results.length === 0 && (
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
+          <p className="mt-1 text-xs text-zinc-400">
             No matches yet — keep typing or try a different spelling.
           </p>
         )}
@@ -124,7 +124,7 @@ export function PlaceAutocompleteForm({
           Add place
         </button>
         {!selected && query.trim().length > 0 && (
-          <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-500">
+          <p className="mt-2 text-xs text-zinc-400">
             Select a place from the search results above to add it.
           </p>
         )}

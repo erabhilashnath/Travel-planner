@@ -71,17 +71,17 @@ export default async function CalendarPage({
           <div className="flex items-center gap-2">
             <Link
               href={`/calendar?year=${prevYear}&month=${prevMonth + 1}`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-600 hover:bg-black/[.04] dark:text-zinc-400 dark:hover:bg-white/[.06]"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-300 hover:bg-white/10"
               aria-label="Previous month"
             >
               ‹
             </Link>
-            <span className="min-w-36 text-center text-sm font-medium text-black dark:text-zinc-50">
+            <span className="min-w-36 text-center text-sm font-medium text-zinc-50">
               {MONTH_NAMES[month]} {year}
             </span>
             <Link
               href={`/calendar?year=${nextYear}&month=${nextMonth + 1}`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-600 hover:bg-black/[.04] dark:text-zinc-400 dark:hover:bg-white/[.06]"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-300 hover:bg-white/10"
               aria-label="Next month"
             >
               ›
@@ -133,7 +133,7 @@ export default async function CalendarPage({
           </div>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-500">
+        <div className="mt-4 flex items-center gap-2 text-xs text-zinc-300">
           <span className="h-3 w-3 rounded bg-ocean-1/30" />
           Trip planned
         </div>
