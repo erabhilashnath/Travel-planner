@@ -7,7 +7,7 @@ import { getTripMembership, canEdit } from "@/server/access";
 import { updateItineraryItem } from "@/server/actions/itinerary";
 import { itineraryCategories } from "@/lib/validation/itinerary";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 const categoryLabels: Record<(typeof itineraryCategories)[number], string> = {
   FLIGHT: "Flight",
@@ -54,7 +54,7 @@ export default async function EditItineraryItemPage({
   const updateItemWithIds = updateItineraryItem.bind(null, tripId, itemId);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href={`/trips/${tripId}/itinerary`}>Back to itinerary</BackLink>} />
 
       <PageMain className="max-w-lg">
@@ -173,6 +173,6 @@ export default async function EditItineraryItemPage({
           </div>
         </form>
       </PageMain>
-    </PageShell>
+    </>
   );
 }

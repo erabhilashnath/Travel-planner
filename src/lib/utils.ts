@@ -1,5 +1,5 @@
 export const inputClass =
-  "w-full rounded-md border border-black/[.15] bg-white px-3 py-2 text-sm text-black placeholder:text-zinc-400 focus:border-black/40 focus:outline-none dark:border-white/[.2] dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-white/40";
+  "w-full rounded-lg border-2 border-black/[.12] bg-white px-3.5 py-2.5 text-sm text-black shadow-sm placeholder:text-zinc-400 transition-colors focus:border-sunset-2 focus:outline-none focus:ring-4 focus:ring-sunset-2/15 dark:border-white/[.15] dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-sunset-2 dark:focus:ring-sunset-2/20";
 
 export const labelClass =
   "mb-1 block text-sm font-medium text-black dark:text-zinc-50";

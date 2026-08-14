@@ -6,7 +6,7 @@ import { prisma } from "@/server/db";
 import { getTripMembership, canEdit } from "@/server/access";
 import { createPlace, deletePlace } from "@/server/actions/places";
 import { haversineKm } from "@/lib/distance";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 import { PlaceAutocompleteForm } from "@/components/place-autocomplete-form";
 import { PlacesMapLoader } from "@/components/places-map-loader";
 
@@ -48,7 +48,7 @@ export default async function PlacesPage({
   const totalKm = legs.reduce((sum, leg) => sum + leg.km, 0);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href={`/trips/${tripId}`}>Back to {trip.name}</BackLink>} />
 
       <PageMain>
@@ -146,6 +146,6 @@ export default async function PlacesPage({
           </div>
         )}
       </PageMain>
-    </PageShell>
+    </>
   );
 }

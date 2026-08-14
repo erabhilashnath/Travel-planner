@@ -6,7 +6,7 @@ import { prisma } from "@/server/db";
 import { getTripMembership, canEdit } from "@/server/access";
 import { deleteTrip } from "@/server/actions/trips";
 import { formatDate, secondaryButtonClass, primaryButtonClass } from "@/lib/utils";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 export default async function TripOverviewPage({
   params,
@@ -37,7 +37,7 @@ export default async function TripOverviewPage({
   const editable = canEdit(membership.role);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href="/">Back to trips</BackLink>} />
 
       <PageMain>
@@ -113,6 +113,6 @@ export default async function TripOverviewPage({
           </div>
         )}
       </PageMain>
-    </PageShell>
+    </>
   );
 }

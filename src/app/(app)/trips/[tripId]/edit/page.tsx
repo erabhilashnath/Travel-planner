@@ -7,7 +7,7 @@ import { getTripMembership, canEdit } from "@/server/access";
 import { updateTrip } from "@/server/actions/trips";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
 import { currencyCodes, currencyLabels } from "@/lib/currencies";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 function toDateInputValue(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -38,7 +38,7 @@ export default async function EditTripPage({
   const updateTripWithId = updateTrip.bind(null, tripId);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href={`/trips/${tripId}`}>Back to trip</BackLink>} />
 
       <PageMain className="max-w-lg">
@@ -151,6 +151,6 @@ export default async function EditTripPage({
           </div>
         </form>
       </PageMain>
-    </PageShell>
+    </>
   );
 }

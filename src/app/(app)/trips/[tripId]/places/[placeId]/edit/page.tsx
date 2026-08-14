@@ -6,7 +6,7 @@ import { prisma } from "@/server/db";
 import { getTripMembership, canEdit } from "@/server/access";
 import { updatePlace } from "@/server/actions/places";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 export default async function EditPlacePage({
   params,
@@ -33,7 +33,7 @@ export default async function EditPlacePage({
   const updatePlaceWithIds = updatePlace.bind(null, tripId, placeId);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href={`/trips/${tripId}/places`}>Back to places</BackLink>} />
 
       <PageMain className="max-w-lg">
@@ -124,6 +124,6 @@ export default async function EditPlacePage({
           </div>
         </form>
       </PageMain>
-    </PageShell>
+    </>
   );
 }

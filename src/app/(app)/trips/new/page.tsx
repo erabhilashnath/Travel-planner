@@ -1,20 +1,13 @@
 import Link from "next/link";
 
-import { auth } from "@/server/auth";
-import { redirect } from "next/navigation";
 import { createTrip } from "@/server/actions/trips";
 import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
 import { currencyCodes, currencyLabels } from "@/lib/currencies";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
-export default async function NewTripPage() {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect("/signin");
-  }
-
+export default function NewTripPage() {
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href="/">Back to trips</BackLink>} />
 
       <PageMain className="max-w-lg">
@@ -125,6 +118,6 @@ export default async function NewTripPage() {
           </div>
         </form>
       </PageMain>
-    </PageShell>
+    </>
   );
 }

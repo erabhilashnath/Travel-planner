@@ -14,7 +14,7 @@ import {
   primaryButtonClass,
 } from "@/lib/utils";
 import type { ItineraryItemModel } from "@/generated/prisma/models";
-import { PageShell, PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
 const categoryLabels: Record<(typeof itineraryCategories)[number], string> = {
   FLIGHT: "Flight",
@@ -71,7 +71,7 @@ export default async function ItineraryPage({
   const createItemForTrip = createItineraryItem.bind(null, tripId);
 
   return (
-    <PageShell>
+    <>
       <PageHeader left={<BackLink href={`/trips/${tripId}`}>Back to {trip.name}</BackLink>} />
 
       <PageMain>
@@ -232,6 +232,6 @@ export default async function ItineraryPage({
           </div>
         )}
       </PageMain>
-    </PageShell>
+    </>
   );
 }
