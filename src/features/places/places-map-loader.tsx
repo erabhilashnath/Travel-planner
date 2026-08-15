@@ -2,10 +2,10 @@
 
 import dynamic from "next/dynamic";
 
-import type { MapPlace } from "@/components/places-map";
+import type { MapPlace } from "@/features/places/places-map";
 
 const PlacesMap = dynamic(
-  () => import("@/components/places-map").then((mod) => mod.PlacesMap),
+  () => import("@/features/places/places-map").then((mod) => mod.PlacesMap),
   {
     ssr: false,
     loading: () => (

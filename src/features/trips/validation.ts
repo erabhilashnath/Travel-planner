@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { currencyCodes } from "@/lib/currencies";
+import { currencyCodes } from "@/features/trips/currencies";
 
 const optionalPositiveNumber = z
   .string()

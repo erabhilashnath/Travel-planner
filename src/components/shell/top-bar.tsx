@@ -1,6 +1,6 @@
 import { LogoMark } from "@/components/logo";
-import { ProfileMenu } from "@/components/profile-menu";
-import { MenuIcon } from "@/components/nav-icons";
+import { ProfileMenu } from "@/components/shell/profile-menu";
+import { MenuIcon } from "@/components/shell/nav-icons";
 
 interface TopBarProps {
   onMenuClick: () => void;

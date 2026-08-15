@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { auth } from "@/server/auth";
+import { auth } from "@/features/auth/config";
 import { prisma } from "@/server/db";
 
 export async function getTripMembership(tripId: string, userId: string) {

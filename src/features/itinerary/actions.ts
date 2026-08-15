@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 import { prisma } from "@/server/db";
 import { requireEditableMembership } from "@/server/access";
-import { itineraryItemFormSchema } from "@/lib/validation/itinerary";
+import { itineraryItemFormSchema } from "@/features/itinerary/validation";
 
 function combineDateAndTime(date: Date, time: string | undefined) {
   if (!time) return undefined;

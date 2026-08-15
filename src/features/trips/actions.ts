@@ -3,10 +3,10 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-import { auth } from "@/server/auth";
+import { auth } from "@/features/auth/config";
 import { prisma } from "@/server/db";
 import { getTripMembership, canEdit } from "@/server/access";
-import { tripFormSchema } from "@/lib/validation/trip";
+import { tripFormSchema } from "@/features/trips/validation";
 
 function parseTripForm(formData: FormData) {
   const result = tripFormSchema.safeParse({

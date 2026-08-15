@@ -11,7 +11,7 @@ import {
   ReportsIcon,
   BookingsIcon,
   CloseIcon,
-} from "@/components/nav-icons";
+} from "@/components/shell/nav-icons";
 
 interface NavItem {
   label: string;

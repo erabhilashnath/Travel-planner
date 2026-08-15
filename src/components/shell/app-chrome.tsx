@@ -3,9 +3,9 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 
-import { TopBar } from "@/components/top-bar";
-import { Sidebar } from "@/components/sidebar";
-import { AppBackground } from "@/components/app-background";
+import { TopBar } from "@/components/shell/top-bar";
+import { Sidebar } from "@/components/shell/sidebar";
+import { AppBackground } from "@/components/shell/app-background";
 
 interface AppChromeProps {
   user: { name?: string | null; email?: string | null; image?: string | null };

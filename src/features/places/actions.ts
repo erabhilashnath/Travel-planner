@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 import { prisma } from "@/server/db";
 import { requireEditableMembership } from "@/server/access";
-import { placeFormSchema } from "@/lib/validation/place";
+import { placeFormSchema } from "@/features/places/validation";
 
 function parsePlaceForm(formData: FormData) {
   const result = placeFormSchema.safeParse({
