@@ -72,8 +72,16 @@ function NearbyList({ items, emptyText }: { items: NearbyPlace[]; emptyText: str
   );
 }
 
-export function DestinationGuideSection({ defaultDestination }: { defaultDestination: string }) {
-  const [open, setOpen] = useState(false);
+export function DestinationGuideSection({
+  defaultDestination,
+  defaultOpen = false,
+  subtitle,
+}: {
+  defaultDestination: string;
+  defaultOpen?: boolean;
+  subtitle?: string;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
   const [query, setQuery] = useState(defaultDestination);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -105,12 +113,19 @@ export function DestinationGuideSection({ defaultDestination }: { defaultDestina
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between p-4 text-left"
+        className="flex w-full items-center justify-between gap-4 p-4 text-left"
       >
-        <span className="font-display text-base font-medium text-black dark:text-zinc-50">
-          🧭 Know your destination
-        </span>
-        <span className="text-zinc-400">{open ? "▾" : "▸"}</span>
+        <div>
+          <span className="font-display text-base font-medium text-black dark:text-zinc-50">
+            🧭 Know your destination
+          </span>
+          {subtitle && (
+            <span className="mt-0.5 block text-sm text-zinc-600 dark:text-zinc-400">
+              {subtitle}
+            </span>
+          )}
+        </div>
+        <span className="shrink-0 text-zinc-400">{open ? "▾" : "▸"}</span>
       </button>
 
       {open && (

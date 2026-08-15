@@ -5,6 +5,7 @@ import { auth } from "@/features/auth/config";
 import { prisma } from "@/server/db";
 import { PageMain } from "@/components/page-shell";
 import { formatDate } from "@/lib/utils";
+import { DestinationGuideSection } from "@/features/destination-guide/destination-guide-section";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -19,6 +20,14 @@ export default async function DashboardPage() {
 
   return (
     <PageMain className="max-w-3xl">
+      <div className="mb-8">
+        <DestinationGuideSection
+          defaultDestination=""
+          defaultOpen
+          subtitle="Search any place — overview, best time to visit, things to do, and nearby emergency services."
+        />
+      </div>
+
       <div className="mb-6 flex items-center justify-between">
         <h2 className="font-display text-xl font-medium text-zinc-50">
           Your trips
