@@ -47,39 +47,46 @@ Travel-planner/
 │   └── seed.ts                ← script that fills the database with sample data for testing
 │
 ├── src/
-│   ├── app/
+│   ├── app/                    ← Next.js ROUTING ONLY. Every file here is a one-line re-export —
+│   │                              the real page/handler lives in the matching src/features/ folder.
 │   │   ├── (app)/                          every logged-in page — shares the top bar + sidebar shell
 │   │   │   ├── layout.tsx                    the shell itself + the single "are you logged in" check
-│   │   │   ├── page.tsx                      dashboard (list of your trips)
-│   │   │   ├── calendar/                     month view, trip days highlighted
+│   │   │   ├── page.tsx                      → features/trips/pages/dashboard-page
+│   │   │   ├── calendar/page.tsx             → features/calendar/pages/calendar-page
 │   │   │   └── trips/
-│   │   │       ├── new/                      "create a trip" page
+│   │   │       ├── new/page.tsx              → features/trips/pages/new-trip-page
 │   │   │       └── [tripId]/                 a single trip: overview, edit
-│   │   │           ├── itinerary/            day-by-day itinerary for that trip
-│   │   │           └── places/               places-to-visit list + map for that trip
-│   │   ├── (auth)/signin/                  the sign-in page (separate layout, not part of the shell)
-│   │   └── api/                            backend endpoints (sign-in, place search)
+│   │   │           ├── itinerary/            → features/itinerary/pages/*
+│   │   │           └── places/               → features/places/pages/*
+│   │   ├── (auth)/signin/page.tsx          → features/auth/pages/signin-page
+│   │   └── api/                            → features/{auth,places}/* (sign-in, place search)
 │   │
-│   ├── components/            ← reusable UI: app-chrome/top-bar/sidebar (the shell), page-shell (per-page
-│   │                             layout pieces), the map, the logo, etc.
-│   ├── server/                ← server-only code
+│   ├── features/               ← ★ each feature lives entirely in its own folder
+│   │   ├── trips/                          pages/, actions.ts, validation.ts, currencies.ts
+│   │   ├── itinerary/                      pages/, actions.ts, validation.ts
+│   │   ├── places/                         pages/, actions.ts, validation.ts, search.ts (Nominatim),
+│   │   │                                   distance.ts, the map components
+│   │   ├── calendar/                       pages/, holidays.ts (Nager.Date), countries.ts
+│   │   └── auth/                           pages/, config.ts (NextAuth), actions.ts, hero-scene.tsx
+│   │
+│   ├── components/            ← cross-cutting UI used by every feature, owned by none
+│   │   ├── shell/                          the persistent top bar + sidebar chrome
+│   │   ├── page-shell.tsx                  shared per-page layout pieces (header, title, etc.)
+│   │   └── logo.tsx
+│   │
+│   ├── server/                ← cross-cutting backend
 │   │   ├── db.ts                            connects to the database
-│   │   ├── auth.ts                          sign-in configuration
-│   │   ├── access.ts                        checks who's allowed to view/edit a trip
-│   │   └── actions/                         create/update/delete logic, one file per feature
+│   │   └── access.ts                        checks who's allowed to view/edit a trip
 │   │
-│   └── lib/                   ← shared helper code
-│       ├── validation/                     zod schemas, one per entity
-│       ├── currencies.ts                    list of supported currencies
-│       ├── distance.ts                      calculates distance between two map points
-│       └── utils.ts                         shared styling/formatting helpers
+│   └── lib/
+│       └── utils.ts                        shared styling/formatting helpers
 │
 ├── vercel.json                ← tells Vercel to run the app in Singapore (close to the database)
 ├── .env.local.example         ← template showing which settings/keys the app needs
 └── package.json                ← the list of external libraries the app depends on
 ```
 
-**The short version:** `src/app` is what you see (pages), `src/server` is what runs behind the scenes (database + business logic), `src/components` and `src/lib` are shared building blocks used by both, and `prisma/schema.prisma` is the single source of truth for what data the app stores.
+**The short version:** `src/features/<name>/` is where you'll spend almost all your time — everything about one feature (its pages, its backend logic, its validation, its feature-only components) lives together there. `src/app/` is just routing wiring pointing at those pages. `src/components`, `src/server`, and `src/lib` at the top level are the small set of things every feature shares. `prisma/schema.prisma` is the single source of truth for what data the app stores. See `AGENTS.md` for the full reasoning and rules.
 
 ## Running it locally
 
