@@ -5,7 +5,7 @@ import { auth } from "@/features/auth/config";
 import { prisma } from "@/server/db";
 import { getTripMembership, canEdit } from "@/server/access";
 import { createPlace, deletePlace } from "@/features/places/actions";
-import { haversineKm } from "@/features/places/distance";
+import { haversineKm } from "@/lib/distance";
 import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 import { PlaceAutocompleteForm } from "@/features/places/place-autocomplete-form";
 import { PlacesMapLoader } from "@/features/places/places-map-loader";

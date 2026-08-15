@@ -7,6 +7,7 @@ import { getTripMembership, canEdit } from "@/server/access";
 import { deleteTrip } from "@/features/trips/actions";
 import { formatDate, secondaryButtonClass, primaryButtonClass } from "@/lib/utils";
 import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
+import { DestinationGuideSection } from "@/features/destination-guide/destination-guide-section";
 
 export default async function TripOverviewPage({
   params,
@@ -90,6 +91,10 @@ export default async function TripOverviewPage({
           <Link href={`/trips/${trip.id}/places`} className={secondaryButtonClass}>
             View places & map
           </Link>
+        </div>
+
+        <div className="mt-8">
+          <DestinationGuideSection defaultDestination={trip.destination} />
         </div>
 
         {membership.role === "OWNER" && (
