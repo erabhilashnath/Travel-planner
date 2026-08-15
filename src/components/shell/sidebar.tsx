@@ -21,7 +21,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", icon: HomeIcon },
-  { label: "Trip History", href: null, icon: HistoryIcon },
+  { label: "Trip History", href: "/history", icon: HistoryIcon },
   { label: "Calendar", href: "/calendar", icon: CalendarIcon },
   { label: "Reports", href: null, icon: ReportsIcon },
   { label: "Active Bookings", href: null, icon: BookingsIcon },
