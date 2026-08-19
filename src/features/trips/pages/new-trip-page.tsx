@@ -5,7 +5,13 @@ import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from
 import { currencyCodes, currencyLabels } from "@/features/trips/currencies";
 import { PageHeader, PageMain, PageTitle, BackLink } from "@/components/page-shell";
 
-export default function NewTripPage() {
+export default async function NewTripPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ startDate?: string; endDate?: string }>;
+}) {
+  const { startDate, endDate } = await searchParams;
+
   return (
     <>
       <PageHeader left={<BackLink href="/">Back to trips</BackLink>} />
@@ -56,6 +62,7 @@ export default function NewTripPage() {
                 name="startDate"
                 type="date"
                 required
+                defaultValue={startDate}
                 className={inputClass}
               />
             </div>
@@ -68,6 +75,7 @@ export default function NewTripPage() {
                 name="endDate"
                 type="date"
                 required
+                defaultValue={endDate}
                 className={inputClass}
               />
             </div>

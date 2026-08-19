@@ -6,6 +6,7 @@ import { prisma } from "@/server/db";
 import { PageMain } from "@/components/page-shell";
 import { formatDate } from "@/lib/utils";
 import { DestinationGuideSection } from "@/features/destination-guide/destination-guide-section";
+import { PlanTripCard } from "@/features/trips/plan-trip-card";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -19,8 +20,9 @@ export default async function DashboardPage() {
   });
 
   return (
-    <PageMain className="max-w-3xl">
-      <div className="mb-8">
+    <PageMain className="max-w-5xl">
+      <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <PlanTripCard />
         <DestinationGuideSection
           defaultDestination=""
           defaultOpen
@@ -28,16 +30,10 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6">
         <h2 className="font-display text-xl font-medium text-zinc-50">
           Your trips
         </h2>
-        <Link
-          href="/trips/new"
-          className="rounded-full bg-gradient-to-r from-sunset-2 to-sunset-3 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
-        >
-          + New trip
-        </Link>
       </div>
 
       {trips.length === 0 ? (
