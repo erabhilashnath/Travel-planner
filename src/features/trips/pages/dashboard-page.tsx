@@ -20,28 +20,20 @@ export default async function DashboardPage() {
   });
 
   return (
-    <PageMain className="max-w-6xl">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr] lg:items-start">
-        <div className="lg:sticky lg:top-6">
-          <DestinationGuideSection
-            defaultDestination=""
-            defaultOpen
-            subtitle="Search any place — overview, best time to visit, things to do, and nearby emergency services."
-          />
-        </div>
+    <PageMain className="max-w-none">
+      <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-sunset-1 via-sunset-2 to-ocean-2 px-8 py-12 text-center">
+        <p className="font-display text-2xl font-medium text-white sm:text-3xl">
+          Where to next?
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-sm text-white/90">
+          Pick your travel dates and we&apos;ll help you build the perfect
+          itinerary.
+        </p>
+      </div>
 
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px] lg:items-start">
         <div>
-          <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-sunset-1 via-sunset-2 to-ocean-2 px-8 py-12 text-center">
-            <p className="font-display text-2xl font-medium text-white sm:text-3xl">
-              Where to next?
-            </p>
-            <p className="mx-auto mt-2 max-w-md text-sm text-white/90">
-              Pick your travel dates and we&apos;ll help you build the
-              perfect itinerary.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-6 max-w-md">
+          <div className="mx-auto max-w-md">
             <PlanTripCard />
           </div>
 
@@ -87,6 +79,14 @@ export default async function DashboardPage() {
               ))}
             </ul>
           )}
+        </div>
+
+        <div className="lg:sticky lg:top-6">
+          <DestinationGuideSection
+            defaultDestination=""
+            defaultOpen
+            subtitle="Search any place — overview, best time to visit, things to do, and nearby emergency services."
+          />
         </div>
       </div>
     </PageMain>
