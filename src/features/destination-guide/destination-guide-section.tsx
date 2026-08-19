@@ -61,8 +61,8 @@ function NearbyList({ items, emptyText }: { items: NearbyPlace[]; emptyText: str
   return (
     <ul className="flex flex-col gap-1.5">
       {items.map((item, i) => (
-        <li key={i} className="flex items-center justify-between text-sm">
-          <span className="text-black dark:text-zinc-50">{item.name}</span>
+        <li key={i} className="flex items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate text-black dark:text-zinc-50">{item.name}</span>
           <span className="shrink-0 text-xs text-zinc-500 dark:text-zinc-500">
             {item.km.toFixed(1)} km
           </span>
@@ -136,9 +136,13 @@ export function DestinationGuideSection({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="e.g. Kyoto, Japan"
-              className={inputClass}
+              className={`${inputClass} min-w-0`}
             />
-            <button type="submit" disabled={loading} className={`${primaryButtonClass} disabled:opacity-40`}>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`${primaryButtonClass} shrink-0 whitespace-nowrap disabled:opacity-40`}
+            >
               {loading ? "Looking up…" : "Look up"}
             </button>
           </form>
@@ -161,7 +165,7 @@ export function DestinationGuideSection({
                         className="h-20 w-20 shrink-0 rounded-lg object-cover"
                       />
                     )}
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-sm text-zinc-700 dark:text-zinc-300">
                         {result.wikipedia.extract}
                       </p>

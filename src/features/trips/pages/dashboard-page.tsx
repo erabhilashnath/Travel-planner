@@ -21,8 +21,8 @@ export default async function DashboardPage() {
 
   return (
     <PageMain className="max-w-none">
-      <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-sunset-1 via-sunset-2 to-ocean-2 px-8 py-12 text-center">
-        <p className="font-display text-2xl font-medium text-white sm:text-3xl">
+      <div className="-mx-6 -mt-10 bg-gradient-to-r from-sunset-1 via-sunset-2 to-ocean-2 px-6 py-10 text-center sm:px-10 sm:py-14">
+        <p className="font-display text-xl font-medium text-white sm:text-2xl lg:text-3xl">
           Where to next?
         </p>
         <p className="mx-auto mt-2 max-w-md text-sm text-white/90">
@@ -31,13 +31,13 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px] lg:items-start">
-        <div>
-          <div className="mx-auto max-w-md">
-            <PlanTripCard />
-          </div>
+      <div className="mx-auto mt-8 w-full max-w-md">
+        <PlanTripCard />
+      </div>
 
-          <div className="mt-10 mb-6">
+      <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px] lg:items-start">
+        <div>
+          <div className="mb-6">
             <h2 className="font-display text-xl font-medium text-zinc-50">
               Your trips
             </h2>
